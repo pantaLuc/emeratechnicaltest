@@ -247,7 +247,7 @@ export default defineComponent({
     showProfileMenu: false,
     links: [
       { text: 'Home', to: '/' },
-      { text: 'About', to: '/about' },
+      { text: 'Guide', to: '/guide' },
     ],
   }),
 })

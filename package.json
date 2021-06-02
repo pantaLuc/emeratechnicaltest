@@ -7,6 +7,9 @@
     "build": "cross-env NODE_ENV=production vite build"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.1",
     "vue": "^3.0.11",
     "vue-router": "^4.0.6"
   },

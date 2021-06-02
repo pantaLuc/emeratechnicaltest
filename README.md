@@ -1,45 +1,15 @@
-# Vite + Tailwind CSS Starter
+# Emera Technical Test
 
-> A [Tailwind CSS](http://tailwindcss.com/) starter template for [Vite](https://github.com/vitejs/vite)
+## How to use
 
-## Tailwind UI Users
+* Download or clone this repo
+* Install [yarn](https://yarnpkg.com/) if you don't already have it (npm alternative)
+* Run `yarn` to install dependencies
+* Run `yarn dev` to run the app
 
-If you have access to [Tailwind UI](https://tailwindui.com), follow these steps to add it:
+## Exercise guide
 
-1. Install first-party plugins:
+It's up to you to decide how to best present your work.  
+You can create a github repo, share the code via a drive or explain what you did through a shared document.
 
-```sh
-yarn add @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio
-```
-
-2. Add the plugins to `tailwind.config.js`:
-
-```js
-// tailwind.config.js
-module.exports = {
-  // ...
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-  ]
-}
-```
-
-## Installation
-
-```sh
-yarn
-```
-
-## Development
-
-```sh
-yarn dev
-```
-
-## Build
-
-```sh
-yarn build
-```
+If at any point you're stuck and would like additional guidance, please reach out!
