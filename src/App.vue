@@ -248,6 +248,7 @@ export default defineComponent({
     links: [
       { text: 'Home', to: '/' },
       { text: 'Guide', to: '/guide' },
+      {text:'Todo' , to: '/todo'}
     ],
   }),
 })
