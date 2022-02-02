@@ -7,8 +7,9 @@
   </div>
   <div class="w-full md:w-1/4  text-gray-700">
   
-    <add-todo/>
+    <AddTodo @add="saveTask"/>
   </div>
+  
 </div>
 </template>
 <script>
@@ -18,6 +19,13 @@ import DisplayTodo from './ComponentsTodo/DisplayTodo.vue';
 
 export default {
   components: { AddTodo, DisplayTodo },
-  
+  setup() {
+   const saveTask=(data)=>{
+     console.log("Todo" ,data)
+   } 
+   return{
+     saveTask
+   }
+  }
 }
 </script>

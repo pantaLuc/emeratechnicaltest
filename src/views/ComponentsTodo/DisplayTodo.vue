@@ -51,6 +51,7 @@
             </tr>
           </tbody>
         </table>
+        
       </div>
     </div>
   </div>
@@ -59,6 +60,7 @@
 
 <script>
 export default {
+  
 
 }
 </script>
