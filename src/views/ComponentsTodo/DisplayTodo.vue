@@ -1,70 +1,81 @@
 <template>
-  <div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Todo
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                DeadLine
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Description
-              </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
-                   washes plates
+     
+   
+      
+          <div class="max-w-xs h-40 flex flex-col justify-between bg-white dark:bg-gray-800 rounded-lg border border-white-400 mb-2 py-2 px-2 hover:shadow-2xl"  v-for="todo  in todos" :key="todo.id" v-show="todos" >
+              <div>
+                  <h3 class="text-indigo-400 hover:text-indigo-500 font-bold mb-3 ">{{todo.nom}}        <button class="px-2 ml-5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-300 text-white" @click="changeStatus(todo)"> {{todo.status}} </button></h3> 
+                  <h4 class="text-gray-800 dark:text-gray-100 text-sm">{{todo.description}}</h4>
+              </div>
+              <div>
+                  <div class="flex items-center justify-between text-gray-800">
+                      <p class="text-sm dark:text-gray-100">{{ modifDate(todo.deadline)}}</p>
+                      <button class="text-green-800 hover:text-gray-500" @click="update_todo(todo)"><i class="fas fa-cash-register"></i></button>
+                      <button class="text-red-800  hover:text-indigo-500"  @click="deleteTodo(todo)"><i class="fas fa-trash-alt text-red"></i></button>
                   </div>
-                  
-                </div>
-              </td>
-              <td class="px-6 py-3 whitespace-nowrap">
-                <span class="px-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Active
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                tomorrow a 18h
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                 une courte description 
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></a>
-                <a href="#" class="text-indigo-600 hover:text-indigo-900"><i class="fa fa-trash"> </i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</template>
-
-<script>
-export default {
+              </div>
+          </div> 
+     
   
 
+</template>
+<script>
+import axios from 'axios';
+import moment from 'moment';
+import { computed, ref } from '@vue/reactivity';
+import { watch } from '@vue/runtime-core'
+export default {
+ /*data() {
+   return {
+     todos:ref(null)
+   }
+ },
+ mounted() {
+   axios.get('http://127.0.0.1:8000/api/crud/listTask/').then(
+        response=>(this.todos=response.data)
+      )
+ },*/
+ setup(props ,ctx){
+   const todos=ref([])
+   const update_todo=(todo)=>{
+      ctx.emit("update",todo)
+   };
+   const deleteTodo=(todo)=>{
+      axios.delete(`http://localhost:8000/api/crud/task/${todo.id}`).then(setTimeout(()=>{location.reload()},10))
+    
+   };
+   
+     axios.get('http://127.0.0.1:8000/api/crud/listTask/').then(
+        response=>(todos.value=response.data)
+      )
+      
+  const modifDate =function (date ) {
+     
+    return moment(date).format('llll');
+  }
+  const changeStatus=(todo)=>{
+    todo.status=="ongoing"?  axios.put(`http://localhost:8000/api/crud/task/${todo.id}` , {"status":"done"}).then(setTimeout(()=>{location.reload()} ,5)): axios.put(`http://localhost:8000/api/crud/task/${todo.id}` , {"status":"ongoing"}).then(setTimeout(()=>{location.reload()} ,5))
+   
+  }
+   return{
+    changeStatus,
+    modifDate,
+     todos,
+     update_todo,
+     deleteTodo
+   }
+ }
+ 
 }
+
 </script>
 
-<style>
+<style scoped>
+body {
+    font-family: "Lato", sans-serif;
+};
+
+
 
 </style>
+
