@@ -4,14 +4,18 @@
       
           <div class="max-w-xs h-40 flex flex-col justify-between bg-white dark:bg-gray-800 rounded-lg border border-white-400 mb-2 py-2 px-2 hover:shadow-2xl"  v-for="todo  in todos" :key="todo.id" v-show="todos" >
               <div>
-                  <h3 class="text-indigo-400 hover:text-indigo-500 font-bold mb-3 ">{{todo.nom}}        <button class="px-2 ml-5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-300 text-white" @click="changeStatus(todo)"> {{todo.status}} </button></h3> 
+                  <div class="inline-flex items-baseline">
+                   
+                     <h3   class="text-indigo-400 hover:text-indigo-500 font-bold mb-3 " >{{todo.nom}} </h3> 
+                     <button class="px-2 ml-8 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-300 text-white" @click="changeStatus(todo)"> {{todo.status}} </button>
+                  </div>
                   <h4 class="text-gray-800 dark:text-gray-100 text-sm">{{todo.description}}</h4>
               </div>
               <div>
                   <div class="flex items-center justify-between text-gray-800">
-                      <p class="text-sm dark:text-gray-100">{{ modifDate(todo.deadline)}}</p>
-                      <button class="text-green-800 hover:text-gray-500" @click="update_todo(todo)"><i class="fas fa-cash-register"></i></button>
-                      <button class="text-red-800  hover:text-indigo-500"  @click="deleteTodo(todo)"><i class="fas fa-trash-alt text-red"></i></button>
+                      <p class="text-sm dark:text-gray-150 font-semibold">{{ modifDate(todo.deadline)}}</p>
+                       
+                      <button class="text-red-800  hover:text-indigo-500 "  @click="deleteTodo(todo)"><i class="fas fa-trash-alt text-red"></i></button>
                   </div>
               </div>
           </div> 
@@ -37,7 +41,7 @@ export default {
  },*/
  setup(props ,ctx){
    const todos=ref([])
-   const update_todo=(todo)=>{
+   const updateTodo=(todo)=>{
       ctx.emit("update",todo)
    };
    const deleteTodo=(todo)=>{
@@ -61,7 +65,7 @@ export default {
     changeStatus,
     modifDate,
      todos,
-     update_todo,
+     updateTodo,
      deleteTodo
    }
  }

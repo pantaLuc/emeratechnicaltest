@@ -5,7 +5,7 @@
     <AddTodo @add="saveTask"/>
   </div>
   <div class="container ml-10 ">
-      <div class="grid grid-cols-3 gap-3  ">
+      <div class="sm:grid grid-cols-1 sm:gap-2 lg:grid-cols-3 lg:gap-3 xl:grid-cols-3 xl:gap-3">
     <display-todo />
   </div>
   </div>
